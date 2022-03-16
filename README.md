@@ -1,15 +1,12 @@
-# Basic Sample Hardhat Project
+# Simple Token Staking Contract With HardHat 🚀
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
-Try running some of the following tasks:
+A simple Staking Contract With NFT whitelisting Deployed on Forked ETH Mainnet.
+Allows Holders of BoredApe NFT to stake BoredApe Token and earn 10% every 30 days.
+
+
+TO Test:
 
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
 npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
 ```
