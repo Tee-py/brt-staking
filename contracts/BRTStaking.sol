@@ -61,7 +61,7 @@ contract BRTStaking {
         //Checks If User Has Current Stake
         if (balances[msg.sender] > 0){
             //check if stake is already more that 3 days and calculate reward
-            if (stakedAt[msg.sender] > 3 days){
+            if (block.timestamp - stakedAt[msg.sender] >= 3 days){
                 //calculate and add to staker balance
                 uint curr_reward = (block.timestamp - lastClaimed[msg.sender])*balances[msg.sender]*10/2592000;
                 balances[msg.sender] += curr_reward;
