@@ -48,8 +48,13 @@ contract BRTStaking {
         _;
     }
 
+    modifier stakeIsMinimum(uint _amount){
+        require(_amount >= minimumStake, "Minimum Stake Not Entered");
+        _;
+    }
 
-    function stake(uint _amount) external hasNFT hasSufficientAllowance(_amount) notReserve {
+
+    function stake(uint _amount) external hasNFT stakeIsMinimum(_amount) hasSufficientAllowance(_amount) notReserve {
         //Checks If User Has Current Stake
         if (balances[msg.sender] > 0){
             //check if stake is already more that 3 days and calculate reward
