@@ -12,7 +12,7 @@ contract BRTStaking {
     IERC721 brtNFT;
 
     address tokenReserve;
-    uint minimumStake = 4000;
+    uint constant minimumStake = 4000;
     uint public totalStaked;
 
     mapping(address => uint) balances;
