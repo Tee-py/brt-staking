@@ -77,14 +77,6 @@ contract BRTStaking {
         return balances[_addr];
     }
 
-    /*function claim() external canClaim {
-        uint reward = balances[msg.sender]/10;
-        bool res = brtToken.transferFrom(tokenReserve, msg.sender, reward);
-        require(res == true, "Failed");
-        nextReward[msg.sender] = block.timestamp + 30 days;
-        emit Claim(msg.sender, reward);
-    }*/
-
     function withdraw() external hasStake {
         bool res;
         uint balance = balances[msg.sender];
