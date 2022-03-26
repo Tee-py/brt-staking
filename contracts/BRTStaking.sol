@@ -13,7 +13,6 @@ contract BRTStaking {
 
     address tokenReserve;
     uint constant minimumStake = 4000;
-    uint public totalStaked;
 
     mapping(address => uint) balances;
     mapping(address => uint) stakedAt;
@@ -59,7 +58,6 @@ contract BRTStaking {
                 //They Earn 0.1 * balance per 30 days i.e 1/25920000 * balance per second
                 uint curr_reward = (block.timestamp - lastClaimed[msg.sender])*balances[msg.sender]/25920000;
                 balances[msg.sender] += curr_reward;
-                totalStaked += curr_reward;
                 lastClaimed[msg.sender] = block.timestamp;
                 emit Claim(msg.sender, curr_reward);
             }
@@ -67,7 +65,6 @@ contract BRTStaking {
         bool res = brtToken.transferFrom(msg.sender, tokenReserve, _amount);
         require(res == true, "Failed");
         balances[msg.sender] += _amount;
-        totalStaked += _amount;
         if (stakedAt[msg.sender] == 0){
             stakedAt[msg.sender] = block.timestamp;
         }
