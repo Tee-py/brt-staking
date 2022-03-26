@@ -18,7 +18,6 @@ contract BRTStaking {
     mapping(address => uint) balances;
     mapping(address => uint) stakedAt;
     mapping(address => uint) lastClaimed;
-    mapping(address => uint) nextReward;
 
     event Stake(address indexed _owner, uint _amount);
     event Withdraw(address indexed _owner, uint _amount);
@@ -50,12 +49,6 @@ contract BRTStaking {
         _;
     }
 
-    modifier canClaim(){
-        require(block.timestamp - stakedAt[msg.sender] >= 3 days, "You need To Have Staked For 3 Days To claim");
-        require(balances[msg.sender] > 0, "Insufficient Balance");
-        require(nextReward[msg.sender] >= block.timestamp, "Next Reward Not Reached.");
-        _;
-    }
 
     function stake(uint _amount) external hasNFT hasSufficientAllowance(_amount) notReserve {
         //Checks If User Has Current Stake
